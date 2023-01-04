@@ -1,0 +1,196 @@
+<div class="row">
+  <div class="col-12">
+    <div class="row">
+      <div class="col-12">
+        <h1>Añadir un contacto</h1>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-12">
+        <!-- Formulario, al pulsar en el submit, llama a la funcion addContact -->
+        <!-- Cada control almacena una propiedad de un atributo con ngModel -->
+        <form #form="ngForm" (ngSubmit)="addContact()">
+          <div class="row form-group">
+            <div class="col-md-6 col-12 form-group">
+              <!-- Nombre -->
+              <!-- Requerido, 3 caracteres minimo -->
+              <label for="name">Nombre (*)</label>
+              <input
+                type="text"
+                class="form-control"
+                name="name"
+                id="name"
+                placeholder="Escribe un nombre..."
+                minlength="3"
+                required
+                #name="ngModel"
+                [(ngModel)]="contact.name"
+                [ngClass]="{
+                  'is-valid': name.dirty && !name.errors,
+                  'is-invalid': name.dirty && name.errors
+                }"
+              />
+
+              <!-- Muestra si es correcto o no (bootstrap) -->
+              <div class="valid-feedback">
+                <span>¡Correcto!</span>
+              </div>
+              <div class="invalid-feedback"></div>
+            </div>
+
+            <div class="col-md-6 col-12 form-group">
+              <!-- Apellidos -->
+              <!-- Requerido, 3 caracteres minimo -->
+              <label for="surname">Apellidos (*)</label>
+              <input
+                type="text"
+                class="form-control"
+                name="surname"
+                id="surname"
+                placeholder="Escribe tus apellidos..."
+                minlength="3"
+                required
+                #surname="ngModel"
+                [(ngModel)]="contact.surname"
+                [ngClass]="{
+                  'is-valid': surname.dirty && !surname.errors,
+                  'is-invalid': surname.dirty && surname.errors
+                }"
+              />
+
+              <div class="valid-feedback">
+                <span>¡Correcto!</span>
+              </div>
+              <div class="invalid-feedback"></div>
+            </div>
+          </div>
+
+          <div class="row form-group">
+            <div class="col-12 form-group">
+              <!-- Descripcion -->
+              <!-- 50 caracteres maximo -->
+              <label for="description">Descripción contacto</label>
+              <textarea
+                name="description"
+                class="form-control is-valid"
+                id="description"
+                maxlength="50"
+                placeholder="Escribe una descripcion del contacto..."
+                #desc="ngModel"
+                [(ngModel)]="contact.description"
+              ></textarea>
+            </div>
+          </div>
+
+          <div class="row form-group">
+            <div class="col-md-6 col-12 form-group">
+              <!-- Sexo -->
+              <label for="sex">Sexo</label>
+              <select
+                class="form-control is-valid"
+                name="sex"
+                id="sex"
+                #sex="ngModel"
+                [(ngModel)]="contact.sex"
+              >
+                <option value="hombre">Hombre</option>
+                <option value="mujer">Mujer</option>
+              </select>
+              <div class="valid-feedback">
+                <span>¡Correcto!</span>
+              </div>
+            </div>
+
+            <div class="col-md-6 col-12 form-group">
+              <!-- Empresa -->
+              <!-- 20 caracteres maximo -->
+              <label for="company">Empresa</label>
+              <input
+                type="text"
+                class="form-control is-valid"
+                name="company"
+                id="company"
+                maxlength="20"
+                placeholder="Escribe el nombre de su empresa..."
+                #company="ngModel"
+                [(ngModel)]="contact.company"
+              />
+
+              <div class="valid-feedback">
+                <span>¡Correcto!</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="row form-group">
+            <div class="col-md-6 col-12 form-group">
+              <!-- Email -->
+              <!-- Requerido, patron email -->
+              <label for="email">Email (*)</label>
+              <input
+                type="text"
+                class="form-control"
+                name="email"
+                id="email"
+                placeholder="Escribe tu email..."
+                pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
+                required
+                #email="ngModel"
+                [(ngModel)]="contact.email"
+                [ngClass]="{
+                  'is-valid': email.dirty && !email.errors,
+                  'is-invalid': email.dirty && email.errors
+                }"
+              />
+
+              <div class="valid-feedback">
+                <span>¡Correcto!</span>
+              </div>
+              <div class="invalid-feedback"></div>
+            </div>
+
+            <div class="col-md-6 col-12 form-group">
+              <!-- Telefono -->
+              <!-- Requerido, patron telefono-->
+              <label for="tel">Telefono (*)</label>
+              <input
+                type="text"
+                class="form-control"
+                name="tel"
+                id="tel"
+                placeholder="Escribe un telefono..."
+                pattern="^(0034|\+34)?(\d\d\d)-? ?(\d\d)-? ?(\d)-? ?(\d)-? ?(\d\d)$"
+                required
+                #telephone="ngModel"
+                [(ngModel)]="contact.telephone"
+                [ngClass]="{
+                  'is-valid': telephone.dirty && !telephone.errors,
+                  'is-invalid': telephone.dirty && telephone.errors
+                }"
+              />
+
+              <div class="valid-feedback">
+                <span>¡Correcto!</span>
+              </div>
+              <div class="invalid-feedback"></div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12">
+              <!-- boton submit -->
+              <button
+                [disabled]="form.invalid"
+                type="submit"
+                class="btn btn-primary btn-block"
+              >
+                Añadir contacto
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

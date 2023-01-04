@@ -1,0 +1,12 @@
+#schedule .menu { background-color: #9e9e9e; }
+#schedule .menu-item { padding: 20px; cursor: pointer; }
+#schedule .menu-item:hover { background: #50afdc; }
+#schedule .menu-item img { display: block; margin-left: auto; margin-right: auto; }
+#schedule .content { padding: 30px; }
+@media (min-width:768px) {
+  #schedule .menu { height: 100%; }
+  #schedule .content { overflow: auto; }
+}
+@media (max-width:768px) {
+  #schedule .content { overflow: hidden; }
+}

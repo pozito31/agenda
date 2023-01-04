@@ -1,0 +1,118 @@
+<div class="row" id="list-contacts">
+  <div class="col-12">
+    <div class="row">
+      <div class="col-12">
+        <h1>Lista de contactos</h1>
+      </div>
+    </div>
+    <ng-container *ngIf="listContacts.length > 0">
+      <div class="row">
+        <div
+          class="col-lg-3 col-md-4 col-sm-6 col-12 mb-4"
+          *ngFor="let contact of listContacts; let index = index"
+        >
+          <div class="card h-100">
+            <div class="card-body">
+              <h4 class="card-title">
+                {{
+                  (contact.surname + ", " + contact.name | capitalize) +
+                    " (" +
+                    contact.sex +
+                    ")"
+                }}
+              </h4>
+              <p class="card-text">{{ contact.description }}</p>
+              <a
+                class="btn btn-block btn-primary text-light"
+                data-toggle="modal"
+                [attr.data-target]="'#modal_' + index"
+                role="button"
+                >Ver detalles</a
+              >
+            </div>
+
+            <div
+              class="modal fade"
+              [attr.id]="'modal_' + index"
+              tabindex="-1"
+              role="dialog"
+              aria-hidden="true"
+            >
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title">
+                      {{ contact.surname + ", " + contact.name | capitalize }}
+                    </h5>
+                    <button
+                      type="button"
+                      class="btn-close"
+                      data-bs-dismiss="modal"
+                      aria-label="Close"
+                    ></button>
+                  </div>
+                  <div class="modal-body">
+                    <div class="row">
+                      <div class="col-3">
+                        <img
+                          class="img-fluid"
+                          [src]="
+                            contact.sex === 'hombre'
+                              ? 'assets/img/perfil-fb-hombre.jpg'
+                              : 'assets/img/perfil-fb-mujer.jpg'
+                          "
+                          alt=""
+                        />
+                      </div>
+                      <div class="col-9">
+                        <div class="row">
+                          <div class="col-12">
+                            <span>{{
+                              contact.description
+                                ? contact.description
+                                : "Sin descripcion"
+                            }}</span>
+                          </div>
+                          <div class="row">
+                            <div class="col-6">
+                              <span class="d-block">Telefono: </span>
+                              <span class="d-block">{{
+                                contact.telephone
+                              }}</span>
+                            </div>
+                            <div class="col-6">
+                              <span class="d-block">Email: </span>
+                              <span class="d-block ellipsis">{{
+                                contact.email
+                              }}</span>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-12 mt-4">
+                              {{
+                                contact.company
+                                  ? "Empresa: " + contact.company
+                                  : "Sin empresa"
+                              }}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="listContacts.length === 0">
+      <div class="row">
+        <div class="col-12">
+          <p>No hay contactos disponibles</p>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</div>
